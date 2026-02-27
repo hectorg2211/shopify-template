@@ -1,14 +1,24 @@
-import { ProductsList } from "./components/ProductsList";
+import { getAllProducts } from "@/lib/shopify";
+import { Header } from "./components/Header";
+import { Hero } from "./components/Hero";
+import { FeaturedProduct } from "./components/FeaturedProduct";
+import { BrowseCollection } from "./components/BrowseCollection";
+import { GearEssentials } from "./components/GearEssentials";
+import { Footer } from "./components/Footer";
 
-export default function Home() {
+export default async function Home() {
+  const products = await getAllProducts();
+
   return (
-    <div className="min-h-screen bg-zinc-50 font-sans dark:bg-black">
-      <main className="mx-auto max-w-4xl px-6 py-16">
-        <h1 className="mb-8 text-3xl font-semibold tracking-tight text-black dark:text-zinc-50">
-          Store Products
-        </h1>
-        <ProductsList />
+    <div className="min-h-screen bg-white">
+      <Header />
+      <main>
+        <Hero />
+        <FeaturedProduct product={products[0]} />
+        <BrowseCollection products={products.slice(0, 4)} />
+        <GearEssentials products={products} />
       </main>
+      <Footer />
     </div>
   );
 }

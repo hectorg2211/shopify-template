@@ -75,6 +75,44 @@ export type ProductsResponse = {
   };
 };
 
+const productByHandleQuery = `
+  query getProduct($handle: String!) {
+    product(handle: $handle) {
+      id
+      title
+      description
+      handle
+      featuredImage {
+        url
+        altText
+      }
+      priceRange {
+        minVariantPrice {
+          amount
+          currencyCode
+        }
+      }
+    }
+  }
+`;
+
+export type ProductByHandleResponse = {
+  data: { product: Product | null };
+};
+
+export async function getProductByHandle(handle: string) {
+  const result = await shopifyFetch<ProductByHandleResponse>({
+    query: productByHandleQuery,
+    variables: { handle },
+  });
+
+  if ("error" in result) {
+    return null;
+  }
+
+  return result.body.data.product;
+}
+
 export async function getAllProducts() {
   const result = await shopifyFetch<ProductsResponse>({
     query: productsQuery,
