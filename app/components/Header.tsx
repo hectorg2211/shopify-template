@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { CartIcon } from './CartIcon'
 
 const navLinks = ['main products', 'backpacks', 'bags', 'accessories', 'watches', 'story', 'teams']
 
@@ -25,8 +26,8 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className='flex items-center gap-4'>
-          <button type='button' aria-label='Search' className='rounded p-2 transition hover:bg-zinc-100'>
+        <div className='flex items-center gap-4 text-black'>
+          <button type='button' aria-label='Search' className='rounded p-2 text-black transition hover:bg-zinc-100'>
             <svg className='h-5 w-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
               <path
                 strokeLinecap='round'
@@ -36,17 +37,8 @@ export function Header() {
               />
             </svg>
           </button>
-          <Link href='/products' className='rounded p-2 transition hover:bg-zinc-100' aria-label='Cart'>
-            <svg className='h-5 w-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d='M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z'
-              />
-            </svg>
-          </Link>
-          <button type='button' aria-label='Account' className='rounded p-2 transition hover:bg-zinc-100'>
+          <CartIcon />
+          <button type='button' aria-label='Account' className='rounded p-2 text-black transition hover:bg-zinc-100'>
             <svg className='h-5 w-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
               <path
                 strokeLinecap='round'

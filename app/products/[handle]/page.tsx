@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getProductByHandle } from "@/lib/shopify";
 import { Header } from "@/app/components/Header";
 import { Footer } from "@/app/components/Footer";
+import { AddToCartButton } from "@/app/components/AddToCartButton";
 
 function formatPrice(amount: string, currencyCode: string) {
   return new Intl.NumberFormat("en-US", {
@@ -66,12 +67,13 @@ export default async function ProductPage({
                 dangerouslySetInnerHTML={{ __html: product.description }}
               />
             )}
-            <Link
-              href="/products"
-              className="mt-8 inline-block rounded-full border-2 border-black bg-black px-8 py-3 text-white transition hover:bg-zinc-800"
-            >
-              Add to Cart
-            </Link>
+            {product.variants?.edges?.[0]?.node?.id ? (
+              <AddToCartButton
+                variantId={product.variants.edges[0].node.id}
+              />
+            ) : (
+              <p className="mt-8 text-zinc-500">This product is currently unavailable.</p>
+            )}
           </div>
         </div>
       </main>
