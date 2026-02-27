@@ -4,9 +4,9 @@ import Link from 'next/link'
 export function Hero() {
   return (
     <section className='flex h-[calc(100dvh-150px)] min-h-[500px] items-center overflow-hidden'>
-      <div className='mx-auto grid w-full h-full items-stretch gap-4 px-6 lg:grid-cols-2 lg:gap-8'>
-        <div className='flex flex-col gap-4 lg:gap-6'>
-          <div className='rounded-2xl border border-zinc-200 bg-zinc-100 p-6 lg:rounded-3xl lg:p-8'>
+      <div className='mx-auto grid w-full h-full items-stretch gap-4 px-4 lg:grid-cols-2'>
+        <div className='flex h-full flex-col gap-4'>
+          <div className='flex min-h-0 flex-1 flex-col justify-center rounded-lg border border-zinc-200 bg-zinc-100 p-6 lg:p-8'>
             <h1 className='text-3xl font-bold tracking-tight text-black md:text-4xl lg:text-5xl xl:text-6xl'>
               GET READY FOR YEAR-END BUSINESS TRAVEL
             </h1>
@@ -21,8 +21,8 @@ export function Hero() {
               Shop Now
             </Link>
           </div>
-          <div className='grid grid-cols-2 gap-3 lg:gap-4'>
-            <div className='rounded-xl border border-zinc-200 bg-zinc-100 p-4 lg:rounded-2xl lg:p-5'>
+          <div className='grid shrink-0 grid-cols-2 gap-4'>
+            <div className='rounded-lg border border-zinc-200 bg-zinc-100 p-4 lg:p-5'>
               <div className='mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-200 lg:mb-3 lg:h-12 lg:w-12'>
                 <svg className='h-6 w-6 text-black' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                   <path
@@ -38,7 +38,7 @@ export function Hero() {
                 On orders over $50. Fast delivery anywhere.
               </p>
             </div>
-            <div className='rounded-xl border border-zinc-200 bg-zinc-100 p-4 lg:rounded-2xl lg:p-5'>
+            <div className='rounded-lg border border-zinc-200 bg-zinc-100 p-4 lg:p-5'>
               <div className='mb-2 flex h-10 w-10 items-center justify-center rounded-lg bg-zinc-200 lg:mb-3 lg:h-12 lg:w-12'>
                 <svg className='h-6 w-6 text-black' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
                   <path
@@ -50,18 +50,16 @@ export function Hero() {
                 </svg>
               </div>
               <h3 className='text-xs font-bold uppercase tracking-wide text-black lg:text-sm'>SECURE CHECKOUT</h3>
-              <p className='mt-0.5 text-xs text-zinc-600 lg:mt-1 lg:text-sm'>
-                Your payment information is protected.
-              </p>
+              <p className='mt-0.5 text-xs text-zinc-600 lg:mt-1 lg:text-sm'>Your payment information is protected.</p>
             </div>
           </div>
         </div>
-        <div className='relative min-h-[200px] h-full overflow-hidden rounded-2xl rounded-br-[3rem] lg:min-h-[280px] lg:rounded-3xl lg:rounded-br-[4rem]'>
+        <div className='relative h-full overflow-hidden rounded-lg'>
           <Image
             src='https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80'
             alt='Person with backpack looking at cityscape'
             fill
-            className='object-cover object-center'
+            className='object-cover object-center h-full'
             priority
             sizes='(max-width: 1024px) 100vw, 50vw'
           />
