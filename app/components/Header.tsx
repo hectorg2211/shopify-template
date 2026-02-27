@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { CartIcon } from './CartIcon'
+import { CartDrawer } from './CartDrawer'
 
 const navLinks = ['main products', 'backpacks', 'bags', 'accessories', 'watches', 'story', 'teams']
 
@@ -37,7 +37,7 @@ export function Header() {
               />
             </svg>
           </button>
-          <CartIcon />
+          <CartDrawer />
           <button type='button' aria-label='Account' className='rounded p-2 text-black transition hover:bg-zinc-100'>
             <svg className='h-5 w-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
               <path
