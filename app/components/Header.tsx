@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { CartDrawer } from './CartDrawer'
 
 const navLinks = ['main products', 'backpacks', 'bags', 'accessories', 'watches', 'story', 'teams']
@@ -12,21 +15,38 @@ export function Header() {
         </div>
       </div>
       <div className='mx-auto flex max-w-7xl items-center justify-between px-6 py-4'>
-        <Link href='/' className='text-xl font-bold tracking-tight text-black'>
-          NEXURA
-        </Link>
+        <motion.div
+          initial={{ filter: 'blur(12px)', opacity: 0 }}
+          animate={{ filter: 'blur(0px)', opacity: 1 }}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
+        >
+          <Link href='/' className='text-xl font-bold tracking-tight text-black'>
+            NEXURA
+          </Link>
+        </motion.div>
         <nav className='hidden gap-8 md:flex'>
-          {navLinks.map(link => (
-            <Link
+          {navLinks.map((link, i) => (
+            <motion.div
               key={link}
-              href={`/#${link.replace(/\s/g, '-')}`}
-              className='text-sm font-medium text-black transition hover:opacity-70'
+              initial={{ filter: 'blur(12px)', opacity: 0 }}
+              animate={{ filter: 'blur(0px)', opacity: 1 }}
+              transition={{ duration: 0.5, ease: 'easeOut', delay: 0.2 + i * 0.06 }}
             >
-              {link}
-            </Link>
+              <Link
+                href={`/#${link.replace(/\s/g, '-')}`}
+                className='text-sm font-medium text-black transition hover:opacity-70'
+              >
+                {link}
+              </Link>
+            </motion.div>
           ))}
         </nav>
-        <div className='flex items-center gap-4 text-black'>
+        <motion.div
+          className='flex items-center gap-4 text-black'
+          initial={{ filter: 'blur(12px)', opacity: 0 }}
+          animate={{ filter: 'blur(0px)', opacity: 1 }}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.2 + navLinks.length * 0.06 }}
+        >
           <button type='button' aria-label='Search' className='rounded p-2 text-black transition hover:bg-zinc-100'>
             <svg className='h-5 w-5' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
               <path
@@ -48,7 +68,7 @@ export function Header() {
               />
             </svg>
           </button>
-        </div>
+        </motion.div>
       </div>
     </header>
   )
