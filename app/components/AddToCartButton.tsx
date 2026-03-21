@@ -11,8 +11,8 @@ type AddToCartButtonProps = {
 
 export function AddToCartButton({
   variantId,
-  className = "mt-8 inline-block rounded-full border-2 border-black bg-black px-8 py-3 text-white transition hover:bg-zinc-800",
-  children = "Add to Cart",
+  className = "btn-primary mt-8",
+  children = "Añadir al carrito",
 }: AddToCartButtonProps) {
   const { addToCart } = useCart();
   const [isAdding, setIsAdding] = useState(false);
@@ -33,7 +33,7 @@ export function AddToCartButton({
       disabled={isAdding}
       className={className}
     >
-      {isAdding ? "Adding..." : children}
+      {isAdding ? "Añadiendo…" : children}
     </button>
   );
 }

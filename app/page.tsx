@@ -10,7 +10,7 @@ export default async function Home() {
   const products = await getAllProducts();
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface text-on-surface">
       <Header />
       <main>
         <Hero />

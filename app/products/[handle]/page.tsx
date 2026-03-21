@@ -7,7 +7,7 @@ import { Footer } from "@/app/components/Footer";
 import { AddToCartButton } from "@/app/components/AddToCartButton";
 
 function formatPrice(amount: string, currencyCode: string) {
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat("es-ES", {
     style: "currency",
     currency: currencyCode,
   }).format(parseFloat(amount));
@@ -26,17 +26,17 @@ export default async function ProductPage({
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface text-on-surface">
       <Header />
       <main className="mx-auto max-w-4xl px-6 py-16">
         <Link
           href="/products"
-          className="mb-8 inline-block text-sm text-zinc-600 hover:text-black"
+          className="mb-8 inline-block text-sm font-medium text-on-surface/70 transition hover:text-primary"
         >
-          ← Back to products
+          ← Volver a la tienda
         </Link>
         <div className="grid gap-12 md:grid-cols-2">
-          <div className="relative aspect-square overflow-hidden rounded-3xl bg-zinc-100">
+          <div className="relative aspect-square overflow-hidden rounded-[2rem] bg-surface-container-low shadow-ambient md:rounded-[3rem]">
             {product.featuredImage ? (
               <Image
                 src={product.featuredImage.url}
@@ -46,33 +46,33 @@ export default async function ProductPage({
                 priority
               />
             ) : (
-              <div className="flex h-full items-center justify-center text-zinc-400">
-                No image
+              <div className="flex h-full items-center justify-center text-on-surface/45">
+                Sin imagen
               </div>
             )}
           </div>
           <div>
-            <h1 className="text-3xl font-bold tracking-tight text-black">
+            <h1 className="text-3xl font-bold tracking-[-0.02em] text-on-surface md:text-4xl">
               {product.title}
             </h1>
-            <p className="mt-4 text-xl text-zinc-600">
+            <p className="mt-4 text-xl text-on-surface/75">
               {formatPrice(
                 product.priceRange.minVariantPrice.amount,
-                product.priceRange.minVariantPrice.currencyCode
+                product.priceRange.minVariantPrice.currencyCode,
               )}
             </p>
             {product.description && (
               <div
-                className="mt-6 text-zinc-600"
+                className="mt-6 leading-relaxed text-on-surface/75 [&_a]:text-primary [&_a]:underline"
                 dangerouslySetInnerHTML={{ __html: product.description }}
               />
             )}
             {product.variants?.edges?.[0]?.node?.id ? (
-              <AddToCartButton
-                variantId={product.variants.edges[0].node.id}
-              />
+              <AddToCartButton variantId={product.variants.edges[0].node.id} />
             ) : (
-              <p className="mt-8 text-zinc-500">This product is currently unavailable.</p>
+              <p className="mt-8 text-on-surface/60">
+                Este producto no está disponible en este momento.
+              </p>
             )}
           </div>
         </div>

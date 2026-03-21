@@ -1,27 +1,112 @@
 @import "tailwindcss";
 @import "./vaul.css";
 
+/**
+ * Living Canvas — DESIGN.md palette.
+ * Tailwind: bg-surface, text-on-surface, bg-primary, text-tertiary, border-outline-variant/20, etc.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary blue (#1D57BA / #004AAD) */
+  --palette-primary: #1d57ba;
+  --palette-primary-dark: #004aad;
+  --palette-primary-container: #739eff;
+  --palette-primary-fixed: #8fabff;
+
+  /* Secondary pink (#923F63 / #F28EB5) */
+  --palette-secondary: #923f63;
+  --palette-secondary-container: #f28eb5;
+  --palette-secondary-fixed-dim: #ffacca;
+
+  /* Surfaces */
+  --palette-surface: #f7f5ff;
+  --palette-surface-container-low: #f0efff;
+  --palette-surface-container: #faf8ff;
+  --palette-surface-container-high: #e8e6f5;
+  --palette-surface-container-lowest: #ffffff;
+
+  /* Content & ghost borders */
+  --palette-on-surface: #252c51;
+  --palette-on-primary: #ffffff;
+  --palette-outline-variant: #252c51;
+
+  --palette-tertiary: var(--palette-secondary);
+
+  --background: var(--palette-surface);
+  --foreground: var(--palette-on-surface);
+
+  --shadow-ambient-value: 0 40px 56px -16px rgb(37 44 81 / 0.06);
+  --shadow-ambient-hover-value: 0 48px 64px -16px rgb(37 44 81 / 0.08);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: var(--palette-primary);
+  --color-primary-dark: var(--palette-primary-dark);
+  --color-primary-container: var(--palette-primary-container);
+  --color-primary-fixed: var(--palette-primary-fixed);
+
+  --color-secondary: var(--palette-secondary);
+  --color-secondary-container: var(--palette-secondary-container);
+  --color-secondary-fixed-dim: var(--palette-secondary-fixed-dim);
+
+  --color-surface: var(--palette-surface);
+  --color-surface-container-low: var(--palette-surface-container-low);
+  --color-surface-container: var(--palette-surface-container);
+  --color-surface-container-high: var(--palette-surface-container-high);
+  --color-surface-container-lowest: var(--palette-surface-container-lowest);
+  --color-surface-bright: var(--palette-surface-container-lowest);
+  --color-surface-dim: var(--palette-surface-container-low);
+
+  --color-on-surface: var(--palette-on-surface);
+  --color-on-primary: var(--palette-on-primary);
+  --color-outline-variant: var(--palette-outline-variant);
+  --color-tertiary: var(--palette-tertiary);
+
+  --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono);
+
+  --shadow-ambient: var(--shadow-ambient);
+  --shadow-ambient-hover: var(--shadow-ambient-hover);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 font-medium text-on-primary transition-transform duration-200;
+  box-shadow: var(--shadow-ambient-value);
+}
+.btn-primary:hover {
+  @apply bg-primary-dark;
+  transform: scale(1.02);
+  box-shadow: var(--shadow-ambient-hover-value);
+}
+.btn-primary:active {
+  transform: scale(0.99);
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-full bg-surface-container-high px-8 py-3 font-medium text-primary transition-transform duration-200;
+  box-shadow: var(--shadow-ambient);
+}
+.btn-secondary:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-ambient-hover);
+}
+
+.input-surface {
+  @apply rounded-2xl bg-surface-container px-4 py-3 text-on-surface placeholder:text-on-surface/45 transition-shadow outline-none;
+}
+.input-surface:focus {
+  @apply ring-2 ring-primary-fixed/90;
+  box-shadow: var(--shadow-ambient-value);
+}
+
+.ghost-border {
+  @apply border border-outline-variant/20;
 }

@@ -10,8 +10,8 @@ export function CartIcon() {
   return (
     <Link
       href="/cart"
-      className="relative rounded p-2 text-black transition hover:bg-zinc-100"
-      aria-label={`Cart${count > 0 ? ` (${count} items)` : ""}`}
+      className="relative rounded-full p-2 text-on-surface transition hover:bg-surface-container-low"
+      aria-label={count > 0 ? `Carrito (${count} productos)` : "Abrir carrito"}
     >
       <svg
         className="h-5 w-5"
@@ -27,7 +27,7 @@ export function CartIcon() {
         />
       </svg>
       {!isLoading && count > 0 && (
-        <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-black text-[10px] font-medium text-white">
+        <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-secondary px-0.5 text-[10px] font-semibold text-on-primary">
           {count > 99 ? "99+" : count}
         </span>
       )}

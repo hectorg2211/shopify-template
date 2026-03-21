@@ -14,7 +14,7 @@ const DrawerOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <VaulDrawer.Overlay
     ref={ref}
-    className={`fixed inset-0 z-50 bg-black/80 ${className ?? ""}`}
+    className={`fixed inset-0 z-50 bg-on-surface/50 backdrop-blur-sm ${className ?? ""}`}
     {...props}
   />
 ));
@@ -28,24 +28,30 @@ const DrawerContent = React.forwardRef<
     <DrawerOverlay />
     <VaulDrawer.Content
       ref={ref}
-      className={`fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border border-zinc-200 bg-white ${className ?? ""}`}
+      className={`fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[2rem] bg-surface shadow-ambient ${className ?? ""}`}
       {...props}
     >
-      <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-zinc-200" />
+      <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-surface-container-high" />
       {children}
     </VaulDrawer.Content>
   </DrawerPortal>
 ));
 DrawerContent.displayName = "DrawerContent";
 
-const DrawerHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+const DrawerHeader = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={`grid gap-1.5 p-4 text-center sm:text-left ${className ?? ""}`}
     {...props}
   />
 );
 
-const DrawerFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
+const DrawerFooter = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={`mt-auto flex flex-col gap-2 p-4 ${className ?? ""}`}
     {...props}
@@ -70,7 +76,7 @@ const DrawerDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <VaulDrawer.Description
     ref={ref}
-    className={`text-sm text-zinc-500 ${className ?? ""}`}
+    className={`text-sm text-on-surface/60 ${className ?? ""}`}
     {...props}
   />
 ));

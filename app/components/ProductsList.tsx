@@ -7,34 +7,44 @@ import type { Product } from "@/lib/shopify";
 
 async function fetchProducts(): Promise<Product[]> {
   const res = await fetch("/api/products");
-  if (!res.ok) throw new Error("Failed to fetch products");
+  if (!res.ok) throw new Error("No se pudieron cargar los productos");
   return res.json();
 }
 
+function formatPrice(amount: string, currencyCode: string) {
+  return new Intl.NumberFormat("es-ES", {
+    style: "currency",
+    currency: currencyCode,
+  }).format(parseFloat(amount));
+}
+
 export function ProductsList() {
-  const { data: products, isLoading, error } = useQuery({
+  const {
+    data: products,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["products"],
     queryFn: fetchProducts,
   });
 
   if (isLoading) {
-    return (
-      <p className="text-zinc-600 dark:text-zinc-400">Loading products...</p>
-    );
+    return <p className="text-on-surface/65">Cargando productos…</p>;
   }
 
   if (error) {
     return (
-      <p className="text-red-600 dark:text-red-400">
-        Error loading products: {error.message}
+      <p className="text-secondary">
+        Error al cargar productos: {error.message}
       </p>
     );
   }
 
   if (!products?.length) {
     return (
-      <p className="text-zinc-600 dark:text-zinc-400">
-        No products found. Add products in your Shopify admin to see them here.
+      <p className="text-on-surface/65">
+        No hay productos todavía. Añade productos en el administrador de Shopify
+        para verlos aquí.
       </p>
     );
   }
@@ -44,11 +54,11 @@ export function ProductsList() {
       {products.map((product) => (
         <li
           key={product.id}
-          className="overflow-hidden rounded-lg border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-900"
+          className="overflow-hidden rounded-[2rem] bg-surface-container-lowest shadow-ambient transition hover:shadow-ambient-hover"
         >
           <Link href={`/products/${product.handle}`}>
             {product.featuredImage && (
-              <div className="relative aspect-square">
+              <div className="relative aspect-square overflow-hidden rounded-t-[2rem]">
                 <Image
                   src={product.featuredImage.url}
                   alt={product.featuredImage.altText ?? product.title}
@@ -58,16 +68,16 @@ export function ProductsList() {
                 />
               </div>
             )}
-            <div className="p-4">
-              <h2 className="font-medium text-black dark:text-zinc-50">
-                {product.title}
-              </h2>
-              <p className="mt-1 line-clamp-2 text-sm text-zinc-600 dark:text-zinc-400">
+            <div className="p-5">
+              <h2 className="font-semibold text-on-surface">{product.title}</h2>
+              <p className="mt-1 line-clamp-2 text-sm leading-relaxed text-on-surface/70">
                 {product.description}
               </p>
-              <p className="mt-2 font-medium">
-                {product.priceRange.minVariantPrice.currencyCode}{" "}
-                {product.priceRange.minVariantPrice.amount}
+              <p className="mt-3 font-medium text-primary">
+                {formatPrice(
+                  product.priceRange.minVariantPrice.amount,
+                  product.priceRange.minVariantPrice.currencyCode,
+                )}
               </p>
             </div>
           </Link>
