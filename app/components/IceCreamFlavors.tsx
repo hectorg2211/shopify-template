@@ -1,22 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
-import { TOPPINGS_SHOWCASE } from "@/lib/toppings-showcase";
+import { FLAVORS_SHOWCASE } from "@/lib/flavors-showcase";
 
-export function GearEssentials() {
+export function IceCreamFlavors() {
   return (
-    <section id="toppings" className="bg-surface-container-low py-24">
+    <section id="sabores" className="bg-surface py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-tertiary">
-              Complementos
+              Carta
             </p>
             <h2 className="mt-2 text-4xl font-bold tracking-[-0.02em] text-on-surface md:text-5xl">
-              TOPPINGS Y EXTRAS
+              SABORES DE HELADO
             </h2>
             <p className="mt-4 max-w-xl leading-relaxed text-on-surface/75">
-              Salsas, fruta, galleta y más para personalizar tu helado o yogur
-              helado como más te guste.
+              Clásicos de siempre y combinaciones especiales. Pide tu favorito
+              en cucurucho, tarrina o vaso — siempre con la misma textura cremosa.
             </p>
           </div>
           <Link href="/products" className="btn-primary w-fit shrink-0">
@@ -24,7 +24,7 @@ export function GearEssentials() {
           </Link>
         </div>
         <div className="mt-14 grid grid-cols-2 gap-6 md:grid-cols-4">
-          {TOPPINGS_SHOWCASE.map((item) => (
+          {FLAVORS_SHOWCASE.map((item) => (
             <div
               key={item.name}
               className="group rounded-[2rem] shadow-ambient"

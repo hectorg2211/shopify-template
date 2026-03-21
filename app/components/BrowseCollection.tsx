@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { brandPhotoUrl } from "@/lib/site-images";
 import type { Product } from "@/lib/shopify";
 
 function formatPrice(amount: string, currencyCode: string) {
@@ -9,8 +10,9 @@ function formatPrice(amount: string, currencyCode: string) {
   }).format(parseFloat(amount));
 }
 
-const placeholderImage =
-  "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&q=80";
+const placeholderImage = brandPhotoUrl(600, 80);
+
+const merchPromoImage = brandPhotoUrl(1200, 80);
 
 function getSecondaryImage(product: Product, primaryUrl: string) {
   const second = product.images?.edges?.[1]?.node;
@@ -25,15 +27,15 @@ export function BrowseCollection({ products }: { products: Product[] }) {
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-tertiary">
-              Carta
+              Tienda
             </p>
             <h2 className="mt-2 text-4xl font-bold tracking-[-0.02em] text-on-surface md:text-5xl">
-              HELADOS Y YOGUR HELADO
+              MERCH KORA YOGURT
             </h2>
             <p className="mt-4 max-w-xl leading-relaxed text-on-surface/75">
-              Descubre cucuruchos, tarrinas y combinaciones con toppings
-              caseros. Desde los clásicos hasta ediciones limitadas de
-              temporada.
+              Gorras, sudaderas, bucket hats y más con la identidad Kora.
+              Piezas cómodas para el día a día y ediciones que no suelen volver:
+              lleva el espíritu del helado bueno a todas partes.
             </p>
           </div>
           <Link href="/products" className="btn-primary w-fit shrink-0">
@@ -43,8 +45,8 @@ export function BrowseCollection({ products }: { products: Product[] }) {
         <div className="mt-14 grid gap-6 lg:grid-cols-3">
           <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] shadow-ambient lg:aspect-auto lg:rounded-[3rem]">
             <Image
-              src={products[0]?.featuredImage?.url ?? placeholderImage}
-              alt="Selección de helados"
+              src={merchPromoImage}
+              alt="Merch y ropa Kora Yogurt"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 33vw"
@@ -52,13 +54,13 @@ export function BrowseCollection({ products }: { products: Product[] }) {
             <div className="absolute inset-0 bg-primary/70" />
             <div className="absolute bottom-8 left-8 text-on-primary">
               <p className="text-xl font-bold tracking-tight">
-                SABORES DE TEMPORADA
+                NUEVA COLECCIÓN
               </p>
               <Link
                 href="/products"
                 className="btn-secondary mt-3 px-6 py-2.5 text-sm"
               >
-                Canjear oferta
+                Ver colección
               </Link>
             </div>
           </div>

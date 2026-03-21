@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { brandPhotoUrl } from "@/lib/site-images";
 
 const customerLinks = [
   "Sobre nosotros",
@@ -100,7 +101,7 @@ export function Footer() {
               <div className="mt-8 flex items-start gap-4">
                 <div className="relative h-16 w-24 overflow-hidden rounded-2xl bg-surface-container-low shadow-ambient">
                   <Image
-                    src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=200&q=80"
+                    src={brandPhotoUrl(200, 80)}
                     alt="Interior de la tienda"
                     fill
                     className="object-cover"

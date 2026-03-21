@@ -4,6 +4,7 @@ import { Hero } from "./components/Hero";
 import { Marquee } from "./components/Marquee";
 import { FeaturedProduct } from "./components/FeaturedProduct";
 import { BrowseCollection } from "./components/BrowseCollection";
+import { IceCreamFlavors } from "./components/IceCreamFlavors";
 import { GearEssentials } from "./components/GearEssentials";
 import { InstagramCarousel } from "./components/InstagramCarousel";
 import { Footer } from "./components/Footer";
@@ -17,9 +18,10 @@ export default async function Home() {
       <main>
         <Hero />
         <Marquee />
-        <FeaturedProduct product={products[0]} />
+        <FeaturedProduct />
+        <IceCreamFlavors />
+        <GearEssentials />
         <BrowseCollection products={products.slice(0, 4)} />
-        <GearEssentials products={products} />
         <InstagramCarousel />
       </main>
       <Footer />
