@@ -8,7 +8,7 @@ import { CartDrawer } from "./CartDrawer";
 const navLinks = [
   { href: "/#productos", label: "Productos" },
   { href: "/#productos", label: "Merch" },
-  { href: "/#yogur", label: "Yogur helado" },
+  { href: "/#yogurt", label: "Yogurt helado" },
   { href: "/#sabores", label: "Sabores" },
   { href: "/#toppings", label: "Toppings" },
   { href: "/#historia", label: "Historia" },

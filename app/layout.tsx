@@ -22,9 +22,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Heladería y yogur helado",
+  title: "Heladería y yogurt helado",
   description:
-    "Helados, yogur helado y postres frescos. Ingredientes naturales, sabores únicos y el mejor sabor en cada bocado.",
+    "Helados, yogurt helado y postres frescos. Ingredientes naturales, sabores únicos y el mejor sabor en cada bocado.",
 };
 
 export default function RootLayout({

@@ -5,7 +5,7 @@ import { landingTransition } from "./landing-motion";
 
 const MARQUEE_ITEMS = [
   "Helado artesanal",
-  "Yogur helado fresco",
+  "Yogurt helado fresco",
   "Toppings caseros",
   "Recogida en tienda",
   "Fresco cada día",

@@ -56,7 +56,7 @@ const features = [
   {
     title: "Receta casera",
     description:
-      "Yogur y leche fresca, elaboración diaria y sin trucos raros: el sabor honesto que te gustaría servir en tu propia cocina.",
+      "Yogurt y leche fresca, elaboración diaria y sin trucos raros: el sabor honesto que te gustaría servir en tu propia cocina.",
     icon: (
       <path
         strokeLinecap="round"
@@ -113,7 +113,7 @@ function FeatureCard({
 
 export function FeaturedProduct() {
   return (
-    <FadeInSection id="yogur" className="bg-surface-container-low py-24">
+    <FadeInSection id="yogurt" className="bg-surface-container-low py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center">
           <FadeInBlock>

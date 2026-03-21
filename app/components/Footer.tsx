@@ -8,7 +8,7 @@ import { landingTransition, landingViewport } from "./landing-motion";
 
 const customerLinks = [
   "Sobre nosotros",
-  "Nuestro yogur",
+  "Nuestro yogurt",
   "Equipo",
   "Tiendas",
   "Trabaja con nosotros",
@@ -110,7 +110,7 @@ export function Footer() {
                 />
               </div>
               <p className="mt-4 text-sm leading-relaxed text-on-surface/75">
-                Heladería especializada en yogur helado y helados con
+                Heladería especializada en yogurt helado y helados con
                 ingredientes naturales. Frescura, sabor y un toque casero en
                 cada cucharada.
               </p>

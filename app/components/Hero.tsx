@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const heroTitleWords = "HELADO Y YOGUR FRESCO HECHO CON AMOR CADA DÍA".split(
+const heroTitleWords = "HELADO Y YOGURT FRESCO HECHO CON AMOR CADA DÍA".split(
   " ",
 );
 
@@ -56,7 +56,7 @@ export function Hero() {
               ))}
             </h1>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-on-surface/75 lg:mt-5 lg:text-lg">
-              Elaboramos helados y yogur helado con leche de calidad, fruta
+              Elaboramos helados y yogurt helado con leche de calidad, fruta
               natural y recetas propias. Fresco, cremoso y listo para llevar o
               disfrutar en nuestra tienda.
             </p>
