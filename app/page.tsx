@@ -1,6 +1,7 @@
 import { getAllProducts } from "@/lib/shopify";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
+import { Marquee } from "./components/Marquee";
 import { FeaturedProduct } from "./components/FeaturedProduct";
 import { BrowseCollection } from "./components/BrowseCollection";
 import { GearEssentials } from "./components/GearEssentials";
@@ -15,6 +16,7 @@ export default async function Home() {
       <Header />
       <main>
         <Hero />
+        <Marquee />
         <FeaturedProduct product={products[0]} />
         <BrowseCollection products={products.slice(0, 4)} />
         <GearEssentials products={products} />
