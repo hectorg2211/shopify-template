@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import { Bricolage_Grotesque, Geist_Mono, Ubuntu } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
 
-const plusJakarta = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta",
+const ubuntu = Ubuntu({
+  variable: "--font-ubuntu",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "700"],
+});
+
+const bricolageGrotesque = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
   display: "swap",
 });
@@ -26,10 +33,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
-      <body
-        className={`${plusJakarta.variable} ${geistMono.variable} antialiased`}
-      >
+    <html
+      lang="es"
+      className={`${ubuntu.variable} ${bricolageGrotesque.variable} ${geistMono.variable}`}
+    >
+      <body className="font-sans antialiased">
         <Providers>{children}</Providers>
       </body>
     </html>

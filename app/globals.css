@@ -64,7 +64,8 @@
   --color-outline-variant: var(--palette-outline-variant);
   --color-tertiary: var(--palette-tertiary);
 
-  --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-ubuntu), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
 
   --shadow-ambient: var(--shadow-ambient);
@@ -74,7 +75,22 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
 }
 
 .btn-primary {

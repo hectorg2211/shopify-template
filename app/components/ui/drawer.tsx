@@ -64,7 +64,7 @@ const DrawerTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <VaulDrawer.Title
     ref={ref}
-    className={`text-lg font-semibold leading-none tracking-tight ${className ?? ""}`}
+    className={`font-heading text-lg font-semibold leading-none tracking-tight ${className ?? ""}`}
     {...props}
   />
 ));

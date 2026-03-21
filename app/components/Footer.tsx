@@ -20,7 +20,8 @@ const supportLinks = [
 
 export function Footer() {
   return (
-    <footer className="text-on-primary">
+    <footer className="flex flex-col gap-3 px-4 pb-4 pt-8 text-on-primary">
+      <div className="overflow-hidden rounded-[2rem] shadow-ambient lg:rounded-[3rem]">
       <div className="relative overflow-hidden bg-primary">
         <div className="pointer-events-none absolute -left-20 top-0 h-64 w-64 rounded-full bg-secondary-fixed-dim/15 blur-3xl" />
         <div className="pointer-events-none absolute -right-10 bottom-0 h-56 w-56 rounded-full bg-primary-container/25 blur-3xl" />
@@ -38,13 +39,17 @@ export function Footer() {
           <div className="flex flex-col justify-between gap-14 lg:flex-row">
             <div className="flex gap-16">
               <div>
-                <p className="text-4xl font-bold tracking-[-0.02em]">30+</p>
+                <p className="font-heading text-4xl font-bold tracking-[-0.02em]">
+                  30+
+                </p>
                 <p className="mt-1 text-sm text-on-primary/75">
                   sabores al año
                 </p>
               </div>
               <div>
-                <p className="text-4xl font-bold tracking-[-0.02em]">15K</p>
+                <p className="font-heading text-4xl font-bold tracking-[-0.02em]">
+                  15K
+                </p>
                 <p className="mt-1 text-sm text-on-primary/75">
                   clientes felices
                 </p>
@@ -71,7 +76,9 @@ export function Footer() {
           </div>
         </div>
       </div>
+      </div>
 
+      <div className="overflow-hidden rounded-[2rem] shadow-ambient lg:rounded-[3rem]">
       <div id="contacto" className="bg-surface-container-low py-16">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-12 lg:grid-cols-6">
@@ -190,6 +197,7 @@ export function Footer() {
             </Link>
           </div>
         </div>
+      </div>
       </div>
     </footer>
   );
