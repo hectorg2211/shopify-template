@@ -78,7 +78,7 @@ body {
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 font-medium text-on-primary transition-transform duration-200;
+  @apply inline-flex items-center justify-center rounded-full bg-primary px-8 py-3 font-medium text-on-primary transition-[transform,box-shadow] duration-200;
   box-shadow: var(--shadow-ambient-value);
 }
 .btn-primary:hover {
@@ -89,14 +89,32 @@ body {
 .btn-primary:active {
   transform: scale(0.99);
 }
+.btn-primary:focus-visible {
+  @apply outline-none ring-2 ring-primary-fixed/90 ring-offset-2 ring-offset-surface;
+}
 
 .btn-secondary {
-  @apply inline-flex items-center justify-center rounded-full bg-surface-container-high px-8 py-3 font-medium text-primary transition-transform duration-200;
-  box-shadow: var(--shadow-ambient);
+  @apply inline-flex items-center justify-center rounded-full border border-outline-variant/20 bg-surface-container-lowest px-8 py-3 font-medium text-primary transition-[transform,box-shadow] duration-200;
+  box-shadow: var(--shadow-ambient-value);
 }
 .btn-secondary:hover {
   transform: scale(1.02);
-  box-shadow: var(--shadow-ambient-hover);
+  box-shadow: var(--shadow-ambient-hover-value);
+}
+.btn-secondary:active {
+  transform: scale(0.99);
+}
+.btn-secondary:focus-visible {
+  @apply outline-none ring-2 ring-primary-fixed/90 ring-offset-2 ring-offset-surface;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary:hover,
+  .btn-primary:active,
+  .btn-secondary:hover,
+  .btn-secondary:active {
+    transform: none;
+  }
 }
 
 .input-surface {

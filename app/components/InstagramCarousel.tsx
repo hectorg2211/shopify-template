@@ -52,7 +52,7 @@ export function InstagramCarousel() {
             href={INSTAGRAM_PROFILE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 self-start rounded-full bg-surface-container-high px-5 py-2.5 text-sm font-medium text-primary shadow-ambient transition hover:scale-[1.02] hover:shadow-ambient-hover sm:self-auto"
+            className="btn-primary gap-2 self-start px-5 py-2.5 text-sm sm:self-auto"
           >
             <InstagramGlyph className="h-5 w-5" aria-hidden />
             Ver en Instagram

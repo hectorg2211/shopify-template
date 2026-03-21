@@ -39,7 +39,9 @@ export function Footer() {
             <div className="flex gap-16">
               <div>
                 <p className="text-4xl font-bold tracking-[-0.02em]">30+</p>
-                <p className="mt-1 text-sm text-on-primary/75">sabores al año</p>
+                <p className="mt-1 text-sm text-on-primary/75">
+                  sabores al año
+                </p>
               </div>
               <div>
                 <p className="text-4xl font-bold tracking-[-0.02em]">15K</p>
@@ -60,7 +62,7 @@ export function Footer() {
                 />
                 <button
                   type="submit"
-                  className="rounded-full bg-surface-container-lowest px-6 py-3 font-medium text-primary shadow-ambient transition hover:scale-[1.02] hover:shadow-ambient-hover"
+                  className="btn-primary shrink-0 px-6 py-3"
                 >
                   Suscribirme
                 </button>
@@ -85,8 +87,8 @@ export function Footer() {
               </div>
               <p className="mt-4 text-sm leading-relaxed text-on-surface/75">
                 Heladería especializada en yogur helado y helados con
-                ingredientes naturales. Frescura, sabor y un toque casero en cada
-                cucharada.
+                ingredientes naturales. Frescura, sabor y un toque casero en
+                cada cucharada.
               </p>
               <div className="mt-8 flex items-start gap-4">
                 <div className="relative h-16 w-24 overflow-hidden rounded-2xl bg-surface-container-low shadow-ambient">
@@ -171,7 +173,7 @@ export function Footer() {
       <div className="bg-surface py-8">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 sm:flex-row">
           <p className="text-sm text-on-surface/60">
-                © {new Date().getFullYear()}. Todos los derechos reservados.
+            © {new Date().getFullYear()}. Todos los derechos reservados.
           </p>
           <div className="flex gap-8">
             <Link

@@ -32,7 +32,8 @@ export function BrowseCollection({ products }: { products: Product[] }) {
             </h2>
             <p className="mt-4 max-w-xl leading-relaxed text-on-surface/75">
               Descubre cucuruchos, tarrinas y combinaciones con toppings
-              caseros. Desde los clásicos hasta ediciones limitadas de temporada.
+              caseros. Desde los clásicos hasta ediciones limitadas de
+              temporada.
             </p>
           </div>
           <Link href="/products" className="btn-primary w-fit shrink-0">
@@ -55,7 +56,7 @@ export function BrowseCollection({ products }: { products: Product[] }) {
               </p>
               <Link
                 href="/products"
-                className="mt-3 inline-flex rounded-full bg-surface-container-lowest/95 px-6 py-2.5 text-sm font-medium text-primary shadow-ambient transition hover:scale-[1.02] hover:shadow-ambient-hover"
+                className="btn-secondary mt-3 px-6 py-2.5 text-sm"
               >
                 Canjear oferta
               </Link>

@@ -150,7 +150,7 @@ export function Hero() {
             href="/products"
             className="absolute inset-0 flex items-center justify-center bg-on-surface/25 opacity-0 transition-opacity duration-1000 group-hover:opacity-100"
           >
-            <span className="btn-secondary px-8 py-3">Ver carta</span>
+            <span className="btn-secondary">Ver carta</span>
           </Link>
         </motion.div>
       </div>
