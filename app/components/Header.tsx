@@ -22,7 +22,7 @@ export function Header() {
           ¡10% de descuento en tu primera compra online! Código: BIENVENIDA10
         </div>
       </div>
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
         <motion.div
           initial={{ filter: "blur(12px)", opacity: 0 }}
           animate={{ filter: "blur(0px)", opacity: 1 }}
@@ -36,9 +36,9 @@ export function Header() {
             <Image
               src="/logo.svg"
               alt=""
-              width={72}
-              height={72}
-              className="h-14 w-14 shrink-0 object-contain sm:h-16 sm:w-16"
+              width={96}
+              height={96}
+              className="h-16 w-16 shrink-0 object-contain sm:h-20 sm:w-20"
               priority
             />
           </Link>
