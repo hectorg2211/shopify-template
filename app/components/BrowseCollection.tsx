@@ -12,6 +12,12 @@ function formatPrice(amount: string, currencyCode: string) {
 const placeholderImage =
   "https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=600&q=80";
 
+function getSecondaryImage(product: Product, primaryUrl: string) {
+  const second = product.images?.edges?.[1]?.node;
+  if (!second?.url || second.url === primaryUrl) return null;
+  return second;
+}
+
 export function BrowseCollection({ products }: { products: Product[] }) {
   return (
     <section id="productos" className="bg-surface py-24">
@@ -57,34 +63,58 @@ export function BrowseCollection({ products }: { products: Product[] }) {
           </div>
           <div className="grid grid-cols-2 gap-4 lg:col-span-2">
             {products.length > 0 ? (
-              products.slice(0, 4).map((product) => (
-                <Link
-                  key={product.id}
-                  href={`/products/${product.handle}`}
-                  className="group overflow-hidden rounded-[2rem] shadow-ambient"
-                >
-                  <div className="relative aspect-square overflow-hidden rounded-[2rem]">
-                    <Image
-                      src={product.featuredImage?.url ?? placeholderImage}
-                      alt={product.featuredImage?.altText ?? product.title}
-                      fill
-                      className="object-cover transition duration-500 group-hover:scale-105"
-                      sizes="(max-width: 1024px) 50vw, 16vw"
-                    />
-                  </div>
-                  <div className="mt-3 px-1">
-                    <p className="font-medium uppercase tracking-wide text-on-surface">
-                      {product.title}
-                    </p>
-                    <p className="text-sm text-on-surface/65">
-                      {formatPrice(
-                        product.priceRange.minVariantPrice.amount,
-                        product.priceRange.minVariantPrice.currencyCode,
+              products.slice(0, 4).map((product) => {
+                const primarySrc =
+                  product.featuredImage?.url ??
+                  product.images?.edges?.[0]?.node?.url ??
+                  placeholderImage;
+                const secondary = getSecondaryImage(product, primarySrc);
+                return (
+                  <Link
+                    key={product.id}
+                    href={`/products/${product.handle}`}
+                    className="group flex flex-col gap-2"
+                  >
+                    <div className="relative aspect-square w-full shrink-0 overflow-hidden rounded-t-[2rem] rounded-b-xl bg-surface-container-low shadow-ambient">
+                      <Image
+                        src={primarySrc}
+                        alt={
+                          product.featuredImage?.altText ??
+                          product.images?.edges?.[0]?.node?.altText ??
+                          product.title
+                        }
+                        fill
+                        className={`object-cover object-top transition-all duration-500 ease-out group-hover:scale-[1.08] ${
+                          secondary
+                            ? "group-hover:blur-md group-hover:opacity-0"
+                            : "group-hover:blur-sm"
+                        }`}
+                        sizes="(max-width: 1024px) 50vw, 16vw"
+                      />
+                      {secondary && (
+                        <Image
+                          src={secondary.url}
+                          alt={secondary.altText ?? product.title}
+                          fill
+                          className="object-cover object-top opacity-0 transition-all duration-500 ease-out group-hover:scale-[1.08] group-hover:opacity-100"
+                          sizes="(max-width: 1024px) 50vw, 16vw"
+                        />
                       )}
-                    </p>
-                  </div>
-                </Link>
-              ))
+                    </div>
+                    <div className="rounded-b-[2rem] rounded-t-xl bg-surface-container-lowest px-3 py-2.5 shadow-ambient">
+                      <p className="line-clamp-2 font-medium uppercase leading-tight tracking-wide text-on-surface">
+                        {product.title}
+                      </p>
+                      <p className="mt-1 text-sm leading-none text-on-surface/65">
+                        {formatPrice(
+                          product.priceRange.minVariantPrice.amount,
+                          product.priceRange.minVariantPrice.currencyCode,
+                        )}
+                      </p>
+                    </div>
+                  </Link>
+                );
+              })
             ) : (
               <div className="col-span-2 flex aspect-square items-center justify-center rounded-[2rem] border border-dashed border-outline-variant/20 bg-surface-container-low">
                 <Link

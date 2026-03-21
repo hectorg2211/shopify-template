@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
@@ -8,7 +7,7 @@ const heroTitleWords = "HELADO Y YOGUR FRESCO HECHO CON AMOR CADA DÍA".split(
   " ",
 );
 
-const heroImage = "/hero.jpg";
+const heroVideo = "/reels/4.mp4";
 
 export function Hero() {
   return (
@@ -57,9 +56,9 @@ export function Hero() {
               ))}
             </h1>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-on-surface/75 lg:mt-5 lg:text-lg">
-              Elaboramos helados y yogur helado con leche de
-              calidad, fruta natural y recetas propias. Fresco, cremoso y listo
-              para llevar o disfrutar en nuestra tienda.
+              Elaboramos helados y yogur helado con leche de calidad, fruta
+              natural y recetas propias. Fresco, cremoso y listo para llevar o
+              disfrutar en nuestra tienda.
             </p>
             <Link href="/products" className="btn-primary mt-6 w-fit lg:mt-8">
               Ver productos
@@ -135,14 +134,17 @@ export function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
-          <Image
-            src={heroImage}
-            alt="Helado en cucurucho"
-            fill
-            className="h-full object-cover object-center transition-all duration-1000 ease-out group-hover:scale-110 group-hover:blur-sm"
-            priority
-            sizes="(max-width: 1024px) 100vw, 50vw"
-          />
+          <video
+            className="absolute inset-0 h-full w-full object-cover object-center transition-all duration-1000 ease-out group-hover:scale-110 group-hover:blur-sm"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-label="Vídeo promocional de la tienda"
+          >
+            <source src={heroVideo} type="video/mp4" />
+          </video>
           <div className="absolute inset-0 bg-primary/30" />
           <Link
             href="/products"

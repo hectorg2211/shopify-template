@@ -43,6 +43,18 @@ export const productsQuery = `
           featuredImage {
             url
             altText
+            width
+            height
+          }
+          images(first: 2) {
+            edges {
+              node {
+                url
+                altText
+                width
+                height
+              }
+            }
           }
           priceRange {
             minVariantPrice {
@@ -56,12 +68,22 @@ export const productsQuery = `
   }
 `;
 
+export type FeaturedImageFields = {
+  url: string;
+  altText: string | null;
+  width: number | null;
+  height: number | null;
+};
+
 export type Product = {
   id: string;
   title: string;
   description: string;
   handle: string;
-  featuredImage: { url: string; altText: string | null } | null;
+  featuredImage: FeaturedImageFields | null;
+  images?: {
+    edges: Array<{ node: FeaturedImageFields }>;
+  };
   priceRange: {
     minVariantPrice: { amount: string; currencyCode: string };
   };
@@ -88,6 +110,8 @@ const productByHandleQuery = `
       featuredImage {
         url
         altText
+        width
+        height
       }
       priceRange {
         minVariantPrice {
@@ -155,6 +179,8 @@ const cartFragment = `
               featuredImage {
                 url
                 altText
+                width
+                height
               }
             }
             price {
@@ -221,7 +247,7 @@ export type CartLine = {
     product: {
       title: string;
       handle: string;
-      featuredImage: { url: string; altText: string | null } | null;
+      featuredImage: FeaturedImageFields | null;
     };
     price: { amount: string; currencyCode: string };
   };

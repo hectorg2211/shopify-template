@@ -25,6 +25,16 @@ export default async function ProductPage({
     notFound();
   }
 
+  const featured = product.featuredImage;
+  const imgWidth =
+    featured && featured.width && featured.width > 0
+      ? featured.width
+      : 1200;
+  const imgHeight =
+    featured && featured.height && featured.height > 0
+      ? featured.height
+      : Math.round((imgWidth * 4) / 3);
+
   return (
     <div className="min-h-screen bg-surface text-on-surface">
       <Header />
@@ -36,13 +46,15 @@ export default async function ProductPage({
           ← Volver a la tienda
         </Link>
         <div className="grid gap-12 md:grid-cols-2">
-          <div className="relative aspect-square overflow-hidden rounded-[2rem] bg-surface-container-low shadow-ambient md:rounded-[3rem]">
-            {product.featuredImage ? (
+          <div className="relative w-full overflow-hidden rounded-4xl bg-surface md:rounded-[3rem]">
+            {featured ? (
               <Image
-                src={product.featuredImage.url}
-                alt={product.featuredImage.altText ?? product.title}
-                fill
-                className="object-cover"
+                src={featured.url}
+                alt={featured.altText ?? product.title}
+                width={imgWidth}
+                height={imgHeight}
+                className="h-auto w-full"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 priority
               />
             ) : (
