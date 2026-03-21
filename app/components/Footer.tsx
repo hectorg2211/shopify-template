@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { brandPhotoUrl } from "@/lib/site-images";
+import { landingTransition, landingViewport } from "./landing-motion";
 
 const customerLinks = [
   "Sobre nosotros",
@@ -22,7 +26,13 @@ const supportLinks = [
 export function Footer() {
   return (
     <footer className="flex flex-col gap-3 px-4 pb-4 pt-8 text-on-primary">
-      <div className="overflow-hidden rounded-[2rem] shadow-ambient lg:rounded-[3rem]">
+      <motion.div
+        className="overflow-hidden rounded-[2rem] shadow-ambient lg:rounded-[3rem]"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={landingViewport}
+        transition={landingTransition}
+      >
       <div className="relative overflow-hidden bg-primary">
         <div className="pointer-events-none absolute -left-20 top-0 h-64 w-64 rounded-full bg-secondary-fixed-dim/15 blur-3xl" />
         <div className="pointer-events-none absolute -right-10 bottom-0 h-56 w-56 rounded-full bg-primary-container/25 blur-3xl" />
@@ -77,9 +87,15 @@ export function Footer() {
           </div>
         </div>
       </div>
-      </div>
+      </motion.div>
 
-      <div className="overflow-hidden rounded-[2rem] shadow-ambient lg:rounded-[3rem]">
+      <motion.div
+        className="overflow-hidden rounded-[2rem] shadow-ambient lg:rounded-[3rem]"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={landingViewport}
+        transition={{ ...landingTransition, delay: 0.08 }}
+      >
       <div id="contacto" className="bg-surface-container-low py-16">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-12 lg:grid-cols-6">
@@ -199,7 +215,7 @@ export function Footer() {
           </div>
         </div>
       </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }

@@ -1,3 +1,8 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { landingTransition } from "./landing-motion";
+
 const MARQUEE_ITEMS = [
   "Helado artesanal",
   "Yogur helado fresco",
@@ -28,15 +33,18 @@ function MarqueeSegment({ duplicate = false }: { duplicate?: boolean }) {
 
 export function Marquee() {
   return (
-    <div
+    <motion.div
       className="overflow-hidden bg-primary py-3.5"
       role="region"
       aria-label="Destacados de la marca"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ ...landingTransition, delay: 0.12 }}
     >
       <div className="marquee-track flex w-max">
         <MarqueeSegment />
         <MarqueeSegment duplicate />
       </div>
-    </div>
+    </motion.div>
   );
 }

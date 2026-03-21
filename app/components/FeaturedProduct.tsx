@@ -1,4 +1,17 @@
+"use client";
+
+import type { ReactNode } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  BlurWords,
+  FadeInBlock,
+  FadeInSection,
+  landingViewport,
+  staggerContainer,
+  staggerItem,
+  staggerItemVideo,
+} from "./landing-motion";
 
 const features = [
   {
@@ -55,7 +68,6 @@ const features = [
   },
 ];
 
-/** Misma ruta que en Hero (`/reels/4.mp4`). */
 const featuredVideoSrc = "/reels/4.mp4";
 
 const videoPoster =
@@ -66,94 +78,113 @@ const featuredTitle = "HELADO ARTESANAL — SABORES PARA TODOS";
 const featuredDescription =
   "Elige entre clásicos como vainilla y chocolate, frutales y combinaciones especiales. Añade toppings: fruta fresca, salsas, galleta, frutos secos o virutas de chocolate. Disponible en tarrina para compartir, vaso mediano o grande, y cono pequeño o grande. Textura cremosa, ingredientes de calidad y el tamaño que mejor te encaje.";
 
+function FeatureCard({
+  title,
+  description,
+  icon,
+}: {
+  title: string;
+  description: string;
+  icon: ReactNode;
+}) {
+  return (
+    <div className="flex w-full gap-4 rounded-3xl bg-surface-container-lowest p-5 shadow-ambient ring-1 ring-on-surface/5">
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-surface-container-low">
+        <svg
+          className="h-6 w-6 text-primary"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          {icon}
+        </svg>
+      </div>
+      <div className="min-w-0 flex-1 text-left">
+        <h3 className="text-sm font-bold uppercase tracking-wide text-on-surface">
+          {title}
+        </h3>
+        <p className="mt-1.5 text-sm leading-relaxed text-on-surface/70">
+          {description}
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export function FeaturedProduct() {
   return (
-    <section id="yogur" className="bg-surface-container-low py-24">
+    <FadeInSection id="yogur" className="bg-surface-container-low py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-tertiary">
-            Favorito de la casa
-          </p>
-          <h2 className="mt-2 text-4xl font-bold tracking-[-0.02em] text-on-surface md:text-5xl">
-            {featuredTitle}
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-on-surface/75">
-            {featuredDescription}
-          </p>
+          <FadeInBlock>
+            <p className="text-xs font-semibold uppercase tracking-widest text-tertiary">
+              Favorito de la casa
+            </p>
+          </FadeInBlock>
+          <BlurWords
+            text={featuredTitle}
+            centered
+            className="mt-2 text-4xl font-bold tracking-[-0.02em] text-on-surface md:text-5xl"
+          />
+          <FadeInBlock delay={0.15}>
+            <p className="mx-auto mt-4 max-w-2xl text-center leading-relaxed text-on-surface/75">
+              {featuredDescription}
+            </p>
+          </FadeInBlock>
         </div>
-        <div className="relative mt-16 flex flex-col items-center justify-center gap-8 lg:flex-row lg:items-start lg:gap-10">
-          <div className="order-2 flex w-full max-w-md flex-wrap justify-center gap-5 lg:order-1 lg:max-w-70 lg:flex-col lg:justify-start">
-            {features.slice(0, 2).map(({ title, description, icon }) => (
-              <div
-                key={title}
-                className="flex w-full gap-4 rounded-3xl bg-surface-container-lowest p-5 shadow-ambient ring-1 ring-on-surface/5"
-              >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-surface-container-low">
-                  <svg
-                    className="h-6 w-6 text-primary"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    {icon}
-                  </svg>
-                </div>
-                <div className="min-w-0 flex-1 text-left">
-                  <h3 className="text-sm font-bold uppercase tracking-wide text-on-surface">
-                    {title}
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-on-surface/70">
-                    {description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <Link
-            href="/products"
-            className="relative block aspect-square w-full max-w-md overflow-hidden rounded-[2rem] shadow-ambient lg:order-2 lg:rounded-[3rem]"
+        <motion.div
+          className="relative mt-16 flex flex-col items-center justify-center gap-8 lg:flex-row lg:items-start lg:gap-10"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={landingViewport}
+        >
+          <motion.div
+            variants={staggerItem}
+            className="order-2 flex w-full max-w-md flex-col gap-5 lg:order-1 lg:max-w-70"
           >
-            <video
-              className="absolute inset-0 h-full w-full object-cover"
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster={videoPoster}
-              aria-label="Helado artesanal Kora Yogurt"
-            >
-              <source src={featuredVideoSrc} type="video/mp4" />
-            </video>
-          </Link>
-          <div className="order-3 flex w-full max-w-md flex-wrap justify-center gap-5 lg:max-w-70 lg:flex-col lg:justify-start">
-            {features.slice(2, 4).map(({ title, description, icon }) => (
-              <div
+            {features.slice(0, 2).map(({ title, description, icon }) => (
+              <FeatureCard
                 key={title}
-                className="flex w-full gap-4 rounded-3xl bg-surface-container-lowest p-5 shadow-ambient ring-1 ring-on-surface/5"
-              >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-surface-container-low">
-                  <svg
-                    className="h-6 w-6 text-primary"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    {icon}
-                  </svg>
-                </div>
-                <div className="min-w-0 flex-1 text-left">
-                  <h3 className="text-sm font-bold uppercase tracking-wide text-on-surface">
-                    {title}
-                  </h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-on-surface/70">
-                    {description}
-                  </p>
-                </div>
-              </div>
+                title={title}
+                description={description}
+                icon={icon}
+              />
             ))}
-          </div>
-        </div>
+          </motion.div>
+          <motion.div
+            className="relative aspect-square w-full max-w-md overflow-hidden rounded-[2rem] shadow-ambient lg:order-2 lg:rounded-[3rem]"
+            variants={staggerItemVideo}
+          >
+            <Link href="/products" className="absolute inset-0 block">
+              <video
+                className="absolute inset-0 h-full w-full object-cover"
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster={videoPoster}
+                aria-label="Helado artesanal Kora Yogurt"
+              >
+                <source src={featuredVideoSrc} type="video/mp4" />
+              </video>
+            </Link>
+          </motion.div>
+          <motion.div
+            variants={staggerItem}
+            className="order-3 flex w-full max-w-md flex-col gap-5 lg:max-w-70"
+          >
+            {features.slice(2, 4).map(({ title, description, icon }) => (
+              <FeatureCard
+                key={title}
+                title={title}
+                description={description}
+                icon={icon}
+              />
+            ))}
+          </motion.div>
+        </motion.div>
       </div>
-    </section>
+    </FadeInSection>
   );
 }

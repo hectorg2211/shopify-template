@@ -1,7 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
+import {
+  BlurWords,
+  FadeInBlock,
+  FadeInSection,
+  landingViewport,
+  staggerContainer,
+  staggerItem,
+} from "./landing-motion";
 
 /** Vídeos en `public/reels/` (1.mp4 … 4.mp4). */
 const REELS = [
@@ -25,38 +34,45 @@ export function InstagramCarousel() {
   };
 
   return (
-    <section id="instagram" className="bg-surface py-16 md:py-20">
+    <FadeInSection id="instagram" className="bg-surface py-16 md:py-20">
       <div className="mx-auto max-w-7xl px-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-tertiary">
-              Redes sociales
-            </p>
-            <h2 className="mt-2 text-3xl font-bold tracking-[-0.02em] text-on-surface md:text-4xl">
-              Instagram
-            </h2>
-            <p className="mt-2 max-w-xl text-on-surface/75">
-              <Link
-                href={INSTAGRAM_PROFILE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-medium text-primary underline-offset-2 hover:underline"
-              >
-                {INSTAGRAM_HANDLE}
-              </Link>
-              — reels y publicaciones recientes. Desliza o usa las flechas para
-              ver más.
-            </p>
+            <FadeInBlock>
+              <p className="text-xs font-semibold uppercase tracking-widest text-tertiary">
+                Redes sociales
+              </p>
+            </FadeInBlock>
+            <BlurWords
+              text="Instagram"
+              className="mt-2 font-heading text-3xl font-bold tracking-[-0.02em] text-on-surface md:text-4xl"
+            />
+            <FadeInBlock delay={0.12}>
+              <p className="mt-2 max-w-xl text-on-surface/75">
+                <Link
+                  href={INSTAGRAM_PROFILE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-primary underline-offset-2 hover:underline"
+                >
+                  {INSTAGRAM_HANDLE}
+                </Link>
+                — reels y publicaciones recientes. Desliza o usa las flechas para
+                ver más.
+              </p>
+            </FadeInBlock>
           </div>
-          <Link
-            href={INSTAGRAM_PROFILE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary gap-2 self-start px-5 py-2.5 text-sm sm:self-auto"
-          >
-            <InstagramGlyph className="h-5 w-5" aria-hidden />
-            Ver en Instagram
-          </Link>
+          <FadeInBlock delay={0.18}>
+            <Link
+              href={INSTAGRAM_PROFILE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary gap-2 self-start px-5 py-2.5 text-sm sm:self-auto"
+            >
+              <InstagramGlyph className="h-5 w-5" aria-hidden />
+              Ver en Instagram
+            </Link>
+          </FadeInBlock>
         </div>
 
         <div className="relative mt-10">
@@ -77,13 +93,18 @@ export function InstagramCarousel() {
             <ChevronRight className="h-5 w-5" />
           </button>
 
-          <div
+          <motion.div
             ref={scrollerRef}
             className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 pt-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="show"
+            viewport={landingViewport}
           >
             {REELS.map((reel) => (
-              <article
+              <motion.article
                 key={reel.id}
+                variants={staggerItem}
                 className="w-[min(100%,326px)] shrink-0 snap-start"
               >
                 <div className="overflow-hidden rounded-3xl bg-black shadow-ambient ring-1 ring-outline-variant/10">
@@ -94,12 +115,12 @@ export function InstagramCarousel() {
                     />
                   </div>
                 </div>
-              </article>
+              </motion.article>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </FadeInSection>
   );
 }
 

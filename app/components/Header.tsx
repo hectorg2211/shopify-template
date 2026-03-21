@@ -47,7 +47,7 @@ export function Header() {
         <nav className="hidden gap-8 md:flex">
           {navLinks.map(({ href, label }, i) => (
             <motion.div
-              key={href}
+              key={label}
               initial={{ filter: "blur(12px)", opacity: 0 }}
               animate={{ filter: "blur(0px)", opacity: 1 }}
               transition={{
